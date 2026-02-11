@@ -16,10 +16,10 @@ https://templatemo.com/tm-599-noir-fashion
 }
 
 :root {
-	--primary: #0a0a0a;
+	--primary: #0011ff;
 	--accent: #ff3366;
-	--accent-hover: #ff1149;
-	--text-light: #ffffff;
+		--accent-hover: #ff1149;
+		--text-light: #ffffff;
 	--text-muted: #999;
 	--bg-dark: #000;
 	--bg-section: #0a0a0a;
@@ -63,16 +63,19 @@ nav {
 	width: 100%;
 	padding: 20px 50px;
 	z-index: 1000;
-	background:rgb(0, 140, 255);
-	backdrop-filter: blur(10px);
+    background: rgba(0, 140, 255, 0.3); /* transparan 30% */
+    backdrop-filter: blur(10px); /* efek blur seperti iPhone */
+    -webkit-backdrop-filter: blur(10px); /* buat Safari */
 	animation: slideDown 0.8s ease;
 	transition: all 0.3s ease;
 }
 
 nav.scrolled {
-	padding: 15px 50px;
-	background:rgb(0, 140, 255);
-	box-shadow: 0 5px 20px rgba(255, 0, 170, 0.5);
+	 padding: 15px 50px;
+    background: rgba(0, 140, 255, 0.4); /* sedikit lebih opaque */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 5px 20px rgba(255, 0, 170, 0.2); /* opsional */
 }
 
 .nav-container {
@@ -90,6 +93,7 @@ nav.scrolled {
     align-items: center;
     gap: 10px;
     text-decoration: none;
+	 margin-right: auto;
 }
 
 .logo-link:hover {
@@ -115,6 +119,16 @@ nav.scrolled {
 	gap: 30px;
 	list-style: none;
 	align-items: center;
+	  display: flex;
+    justify-content: center; /* center link horizontal */
+    gap: 30px; /* jarak antar link */
+    flex: 1; /* biar mengambil ruang di tengah */
+}
+.nav-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
 .nav-links a {
@@ -311,24 +325,30 @@ nav.scrolled {
 	}
 }
 
-/* Mobile Menu */
+/* Mobile Menu *//* ===== MOBILE MENU TOGGLE ===== */
 .menu-toggle {
-	display: none;
+	display: none; /* tampilkan via media query */
 	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	cursor: pointer;
 	z-index: 1001;
+	width: 35px;
+	height: 30px;
 }
 
 .menu-toggle span {
-	width: 25px;
-	height: 2px;
+	width: 100%;
+	height: 3px;
 	background: var(--text-light);
-	margin: 3px 0;
-	transition: 0.3s;
+	border-radius: 2px;
+	margin: 4px 0;
+	transition: all 0.3s ease;
 }
 
+/* animasi toggle aktif */
 .menu-toggle.active span:nth-child(1) {
-	transform: rotate(45deg) translate(5px, 5px);
+	transform: rotate(45deg) translate(6px, 6px);
 }
 
 .menu-toggle.active span:nth-child(2) {
@@ -336,26 +356,71 @@ nav.scrolled {
 }
 
 .menu-toggle.active span:nth-child(3) {
-	transform: rotate(-45deg) translate(7px, -6px);
+	transform: rotate(-45deg) translate(6px, -6px);
 }
 
+/* ===== MOBILE NAV ===== */
 .mobile-nav {
-	display: none;
+	display: none; /* default hidden, tampil via JS */
 	position: fixed;
 	top: 0;
-	right: -100%;
+	right: 0; /* langsung 0 */
 	width: 100%;
 	height: 100vh;
-	background:rgb(0, 140, 255);
-	backdrop-filter: blur(20px);
-	transition: right 0.3s ease;
+	background: rgba(0, 140, 255, 0.25); /* transparan */
+	backdrop-filter: blur(15px); /* blur iPhone style */
+	-webkit-backdrop-filter: blur(15px); /* Safari */
+	transition: transform 0.4s ease, opacity 0.4s ease;
+	transform: translateX(100%); /* sembunyi di kanan */
+	opacity: 0;
 	z-index: 999;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 
+/* saat menu aktif */
+.mobile-nav.active {
+	transform: translateX(0); /* masuk layar */
+	opacity: 1;
+}
+
+/* mobile nav links */
+.mobile-nav-links {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 40px; /* jarak antar link */
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	text-align: center; /* biar link center horizontal */
+}
+
+.mobile-nav-links a {
+	color: var(--text-light);
+	text-decoration: none;
+	font-size: 24px;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+	transition: all 0.3s ease;
+}
+.mobile-nav-links a:hover {
+	color: var(--accent);
+	transform: translateX(5px); /* geser halus */
+}
+
+
+/* saat menu aktif */
 .mobile-nav.active {
 	right: 0;
+	display: flex;
+	opacity: 1;
 }
 
+/* mobile nav links */
 .mobile-nav-links {
 	display: flex;
 	flex-direction: column;
@@ -364,6 +429,8 @@ nav.scrolled {
 	height: 100%;
 	gap: 30px;
 	list-style: none;
+	padding: 0;
+	margin: 0;
 }
 
 .mobile-nav-links a {
@@ -379,6 +446,18 @@ nav.scrolled {
 	color: var(--accent);
 	transform: translateX(10px);
 }
+
+/* ===== MEDIA QUERY ===== */
+@media (max-width: 900px) {
+	.menu-toggle {
+		display: flex; /* muncul di mobile */
+	}
+
+	.nav-links {
+		display: none; /* sembunyikan navbar biasa */
+	}
+}
+
 
 /* Hero Section */
 .hero {
@@ -571,7 +650,7 @@ nav.scrolled {
 	display: block;
 	margin-bottom: 5px;
 }
-
+	
 .stat-label {
 	font-size: 12px;
 	text-transform: uppercase;
@@ -959,7 +1038,7 @@ nav.scrolled {
 .collection-thumbnail {
     width:100%;
     aspect-ratio: 1/1;
-    background:#111;
+    background:#1900ff;
     overflow:hidden;
     border-radius:20px 20px 0 0;
 }
@@ -978,7 +1057,7 @@ nav.scrolled {
 /* CARD BOTTOM */
 .card-content {
     padding: 16px 16px 18px;
-    background: linear-gradient(180deg,#000, #000814);
+    background: linear-gradient(180deg,#0400ff, #6f00ff);
 }
 
 /* BADGE */
@@ -1026,7 +1105,7 @@ nav.scrolled {
     text-decoration:none;
     font-size:11px;
     font-weight:900;
-    color:#000;
+    color:#5900ff;
     letter-spacing:2px;
     box-shadow: 0 0 25px rgba(0,255,255,.5);
     transition:.3s ease;
@@ -1070,7 +1149,7 @@ nav.scrolled {
 /* ===== CARD mobile polish ===== */
 .collection-card {
     border-radius: 18px;
-    background: #010b26;
+    background: #4c00ff;
     overflow: hidden;
     position: relative;
     box-shadow: inset 0 0 10px rgba(0,255,255,.15);
@@ -1081,7 +1160,7 @@ nav.scrolled {
     content:"";
     position:absolute;
     inset:0;
-    background: radial-gradient(at top, rgba(0,255,255,.12), transparent 50%);
+    background: radial-gradient(at top, rgba(55, 0, 255, 0.12), transparent 50%);
     pointer-events: none;
 }
 
@@ -1093,7 +1172,7 @@ nav.scrolled {
 
 /* content fix */
 .card-content {
-    background:#000;
+    background:#6200ff;
     padding: 12px 14px 16px;
     text-align: left;
 }
@@ -1158,7 +1237,27 @@ nav.scrolled {
 }
 
 
+/* SOLD LABEL *//* SOLD OVERLAY */
+.sold-overlay {
+    position: absolute;
+    inset: 0; /* full cover */
+    background: rgba(0, 0, 0, 0.6); /* gelapkan gambar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 20px 20px 0 0; /* sesuaikan radius gambar */
+    z-index: 5;
+    pointer-events: none; /* biar klik tetap ke link */
+}
 
+.sold-overlay span {
+    color: #ff0033;
+    font-size: 20px;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 0 0 12px rgba(255, 0, 51, 0.8);
+}
 
 
 
@@ -1168,7 +1267,7 @@ nav.scrolled {
 /* Featured Section */
 .featured {
 	padding: 120px 50px 100px;
-	background: var(--bg-section);
+	background: blueviolet;
 	position: relative;
 	overflow: hidden;
 }
@@ -1231,15 +1330,15 @@ nav.scrolled {
 
 .highlight-item {
 	padding: 25px;
-	background: rgba(255, 255, 255, 0.02);
-	border: 1px solid rgba(255, 255, 255, 0.05);
+	background: rgb(255, 0, 179);
+	border: 1px solid rgb(255, 255, 255);
 	border-radius: 8px;
 	text-align: center;
 	transition: all 0.3s ease;
 }
 
 .highlight-item:hover {
-	background: rgba(255, 255, 255, 0.05);
+	background: rgb(25, 0, 255);
 	border-color: var(--accent);
 	transform: translateY(-5px);
 }
@@ -1389,7 +1488,7 @@ transition: transform 1s ease;
 
 .testimonial-card {
 min-width: 350px;
-background: rgba(255, 255, 255, 0.05);
+background: rgb(38, 0, 255);
 border-radius: 12px;
 padding: 30px;
 margin-right: 20px;
@@ -2296,5 +2395,36 @@ color: #bbb;
 
 
 
+/* ===== GRID RESPONSIVE CLEAN ===== */
+.grid {
+    display: grid;
+    gap: 14px;
+    padding-bottom: 10px;
+    grid-template-columns: repeat(2, 1fr); /* default mobile 2 kolom */
+}
+
+/* Tablet: 3 kolom */
+@media (min-width: 768px) and (max-width: 991px) {
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+}
+
+/* Desktop: 4 kolom */
+@media (min-width: 992px) and (max-width: 1399px) {
+    .grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+    }
+}
+
+/* Large desktop: 5 kolom */
+@media (min-width: 1400px) {
+    .grid {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 30px;
+    }
+}
 
 

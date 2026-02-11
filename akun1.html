@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Detail Akun ML</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="produk.css">
+</head>
+
+<body>
+
+<section class="detail-product">
+  <a href="index.html" class="back-link">← Kembali</a>
+
+  <div class="detail-card">
+
+    <!-- KIRI : GAMBAR -->
+    <div class="detail-image">
+      <div class="main-image">
+        <img id="mainImg" src="images/FLYYZ GAME MARKET.png">
+      </div>
+
+      <div class="thumbs">
+        <img src="images/68520266-c843-4baa-aca9-2b7e4fd81d9f.jpeg" onclick="changeImage(this)" class="active">
+        <img src="images/6fff248e-70d2-45e1-83b2-c244d473be55.jpeg" onclick="changeImage(this)">
+        <img src="images/74833ad0-e8bd-40ce-a6e0-f00d63dab66e.jpeg" onclick="changeImage(this)">
+      </div>
+    </div>
+
+    <!-- KANAN : INFO -->
+    <div class="detail-content">
+      <span class="badge ready">READY</span>
+
+      <h1>prime 8</h1>
+
+      <div class="spec">
+        <p>Hero: 99</p>
+        <p>Skin: 99</p>
+        <p>Rank: Mythic Glory</p>
+      </div>
+
+      <div class="price-box">
+        <span class="price">Rp 99.000</span>
+        <span class="price-old">Rp 999.000</span>
+      </div>
+
+      <div class="actions">
+        <a href="#" class="btn nego">NEGO?</a>
+        <a href="https://wa.me/628XXXXXXXXXX" target="_blank" class="btn buy">
+          BELI SEKARANG
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+
+    <div class="footer-title">
+        <img src="images/FLYYZ GAME MARKET.png" class="ft-icon">
+        <h2>OM FLY</h2>
+        <img src="images/FLYYZ GAME MARKET.png" class="ft-icon">
+    </div>
+
+    <!-- Description -->
+    <div class="footer-description">
+        <p><span>FLY Store</span> adalah Pusat Layanan Gaming Paling Lengkap Untuk Para Gamer! Kami Menyediakan Jual / Beli Akun : Free Fire , Mobile Legend , Hingga Joki Free Fire Dengan Harga Bersahabat Tentunya,Dan Proses Cepat Serta Akun Dijamin Aman Dan Bergaransi Selamanya.</p>
+
+        <p>Dengan Sistem Transaksi Yang Aman, Admin Yang Ramah, Serta Pelayanan Yang Cepat , FLYYZ GAME MARKET Jadi Solusi Pilihan Utama Anda.</p>
+
+        <p>om fly – Solusi Untuk Semua kebutuhan crot</p>
+    </div>
+
+    <!-- 4 Columns -->
+    <div class="footer-columns">
+
+        <div class="footer-col">
+            <h4>Peta Situs</h4>
+            <a href="#">Jual Akun</a>
+            <a href="#">Beli Akun</a>
+            <a href="#">Lacak Transaksi</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Syarat dan Ketentuan</h4>
+            <a href="#">Kebijakan Pribadi</a>
+            <a href="#">Syarat dan Ketentuan</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Customer Service</h4>
+            <a class="cs-item">📎 Linktree Beli Akun</a>
+            <a class="cs-item">⚠️ AKUN BERMASALAH</a>
+            <a class="cs-item">💬 TELEGRAM Jual Akun</a>
+            <a class="cs-item">📱 Whatsapp</a>
+        </div>
+
+        <div class="footer-col">
+            <h4>Social Media Resmi</h4>
+            <a class="cs-item">📷 Instagram</a>
+            <a class="cs-item">🎵 Tiktok</a>
+            <a class="cs-item">▶️ YouTube</a>
+        </div>
+
+    </div>
+
+    <!-- Bottom -->
+    <p class="footer-bottom">
+        Copyright © 2025 FLYYZ GAME STORE All rights reserved. Powered by YAFI GANTENG SENDIRI
+    </p>
+
+</footer>
+</section>
+
+<script>
+function changeImage(el) {
+  const mainImg = document.getElementById('mainImg');
+  document.querySelectorAll('.thumbs img')
+    .forEach(img => img.classList.remove('active'));
+
+  mainImg.src = el.src;
+  el.classList.add('active');
+}
+</script>
+
+</body>
+</html>
